@@ -4,7 +4,7 @@
 extern long g_lObjs;
 extern long g_lLocks;
 
-class CFN_14 :public IFN_14
+class CFN_14 :public IFN_14, public IVer
 {
 protected:
 	// Reference count
@@ -23,6 +23,9 @@ public:
 	STDMETHOD(Fun141(int, int, int*));
 	STDMETHOD(Fun142(int, int, int, int*));
 	STDMETHOD(Fun143(double, double*));
+
+	//IVer
+	STDMETHOD(GetAuthor(WCHAR* name, WCHAR** message));
 };
 
 /// <summary>

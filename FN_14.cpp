@@ -17,8 +17,15 @@ CFN_14::~CFN_14()
 STDMETHODIMP CFN_14::QueryInterface(REFIID riid, void** ppv)
 {
 	*ppv = 0;
-	if (riid == IID_IUnknown || riid == IID_FN_14)
-		*ppv = this;
+	if (riid == IID_IUnknown)
+		*ppv = (IFN_14*)this;
+	else
+		if (riid == IID_FN_14)
+			*ppv = (IFN_14*)this;
+		else
+			if (riid == IID_IVer)
+				*ppv = (IVer*)this;
+
 	if (*ppv)
 	{
 		AddRef();
@@ -59,6 +66,24 @@ STDMETHODIMP CFN_14::Fun143(double in, double* out)
 	*out = in * in;
 	return S_OK;
 }
+
+STDMETHODIMP CFN_14::GetAuthor(WCHAR* name, WCHAR** message)
+{
+	if (name == nullptr || message == nullptr)
+		return E_POINTER;
+
+	size_t nameLen = wcslen(name);
+	wchar_t* buffer = (wchar_t*)CoTaskMemAlloc((wcslen(L"Gr. 30331, ") + nameLen + 1) * sizeof(wchar_t));
+	if (!buffer)
+		return E_OUTOFMEMORY;
+
+	wcscpy_s(buffer, 100, L"Gr. 30331, ");
+	wcscat_s(buffer, 100, name);
+	*message = buffer;
+
+	return S_OK;
+}
+
 
 // Realization of CFN_14 class FN_14ClassFactory
 
@@ -124,3 +149,4 @@ STDMETHODIMP FN_14ClassFactory::LockServer(BOOL fLock)
 		InterlockedDecrement(&g_lLocks);
 	return S_OK;
 }
+
