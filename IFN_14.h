@@ -16,8 +16,6 @@ class IFN_14 : public IUnknown
 {
 public:
 	STDMETHOD(Fun141(int, int, int*)) PURE;
-	STDMETHOD(Fun142(int, int , int, int*)) PURE;
+	STDMETHOD(Fun142(int, int, int, int*)) PURE;
 	STDMETHOD(Fun143(double, double*)) PURE;
 };
-
-

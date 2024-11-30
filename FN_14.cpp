@@ -124,4 +124,3 @@ STDMETHODIMP FN_14ClassFactory::LockServer(BOOL fLock)
 		InterlockedDecrement(&g_lLocks);
 	return S_OK;
 }
-

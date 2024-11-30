@@ -31,7 +31,7 @@ STDAPI DllGetClassObject(REFCLSID rclsid, REFIID riid, void**
 	{
 		return(E_OUTOFMEMORY);
 	}
-		
+
 
 	hr = pCF->QueryInterface(riid, ppv);
 	// Check for failure of QueryInterface
